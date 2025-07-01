@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:8.0.1-alpine
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:latest
+    container_name: my-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9095:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+    driver: local
