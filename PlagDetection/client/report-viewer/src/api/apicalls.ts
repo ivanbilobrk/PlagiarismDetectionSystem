@@ -283,7 +283,7 @@ export async function checkIfResourceUpdating(
 export async function checkIfJplagIsRunning(
   resultHash: string,
 ) {
-  const response = await fetch(`${backendBaseUrl2}plag/checkjplagrunning?resultHash=${resultHash}`);
+  const response = await fetch(`${backendBaseUrl}plag/checkjplagrunning?resultHash=${resultHash}`);
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || '');
@@ -294,7 +294,7 @@ export async function checkIfJplagIsRunning(
 export async function checkIfBasicJplagIsRunning(
   resultHash: string,
 ) {
-  const response = await fetch(`${backendBaseUrl2}plag/checkjplagrunning?resultHash=${resultHash}`);
+  const response = await fetch(`${backendBaseUrl}plag/checkjplagrunning?resultHash=${resultHash}`);
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || '');
@@ -452,7 +452,7 @@ export async function addAIResourceToTheProject(
 export async function getPlagRunStatuses(
   resultHash: string,
 ) {
-  const response = await fetch(`${backendBaseUrl2}plag/getPlagRunStatuses?resultHash=${resultHash}`)
+  const response = await fetch(`${backendBaseUrl}plag/getPlagRunStatuses2?resultHash=${resultHash}`)
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || 'Pogreška prilikom učitavanja statusa provjere plagijata.');
@@ -463,7 +463,7 @@ export async function getPlagRunStatuses(
 export async function getCurrentlyProcessingSubmissionsForRun(
   resultHash: string,
 ) {
-  const response = await fetch(`${backendBaseUrl2}plag/getCurrentlyProcessingSubmissions?resultHash=${resultHash}`)
+  const response = await fetch(`${backendBaseUrl}plag/getCurrentlyProcessingSubmissions2?resultHash=${resultHash}`)
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || 'Pogreška prilikom učitavanja trenutnih provjera plagijata.');
@@ -474,7 +474,7 @@ export async function getCurrentlyProcessingSubmissionsForRun(
 export async function checkRunSuspended(
   resultHash: string,
 ): Promise<PlagSuspendedStatus> {
-  const response = await fetch(`${backendBaseUrl2}plag/isSuspended?resultHash=${resultHash}`);
+  const response = await fetch(`${backendBaseUrl}plag/isSuspended2?resultHash=${resultHash}`);
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || 'Pogreška prilikom učitavanja statusa provjere plagijata.');
@@ -485,7 +485,7 @@ export async function checkRunSuspended(
 export async function getPlagRunDetails(
   resultHash: string,
 ) {
-  const response = await fetch(`${backendBaseUrl2}plag/getPlagRunDetails?resultHash=${resultHash}`)
+  const response = await fetch(`${backendBaseUrl}plag/getPlagRunDetails?resultHash=${resultHash}`)
   if (!response.ok) {
     const errorData = await response.text();
     throw new Error(errorData || 'Pogreška prilikom učitavanja trenutnih provjera plagijata.');
@@ -494,4 +494,3 @@ export async function getPlagRunDetails(
 }
 
 const backendBaseUrl = 'http://localhost:8080/'
-const backendBaseUrl2 = 'http://localhost:9090/'
